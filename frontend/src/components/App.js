@@ -60,6 +60,7 @@ function App() {
 
     // Проверка токена при заходе на страницу
     function checkToken (){
+        console.log(document.cookie);
         if(localStorage.getItem('jwt')){
             const jwt = localStorage.getItem('jwt');
             auth.checkToken(jwt).then((data) => {

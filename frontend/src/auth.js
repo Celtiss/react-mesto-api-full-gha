@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'api-mesto.temirbekova.nomoredomains.monster';
 
 export const signUp  =  (email, password) =>  {
     return fetch(`${BASE_URL}/signup`, {
@@ -44,7 +44,8 @@ export const checkToken = (jwt) => {
         headers:{
             "Content-Type": "application/json",
             "Authorization" : `Bearer ${jwt}`
-        }
+        },
+        credentials: "include",
     })
     .then( (res) => {
         if(res.ok) {

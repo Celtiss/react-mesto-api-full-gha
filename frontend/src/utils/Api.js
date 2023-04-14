@@ -92,11 +92,12 @@ class Api {
 
 const api = new Api ({
     //adress: 'http://localhost:3000'
-    url: 'https://mesto.nomoreparties.co/v1/cohort-52',
+    url: 'api-mesto.temirbekova.nomoredomains.monster',
     headers: {
         'content-type': 'application/json',
         authorization: '88b8691a-7ac8-4b43-af84-6572693f6425'
-    }
+    },
+    credentials: "include",
 });
 
 export {api};
