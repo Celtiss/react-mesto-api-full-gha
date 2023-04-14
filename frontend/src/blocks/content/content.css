@@ -1,0 +1,16 @@
+.content {
+    max-width: 880px;
+    min-width: 282px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 51px;
+    padding: 40px 0 66px;
+}
+
+@media screen and (max-width: 569px) {
+    .content {
+        padding: 42px 0 48px;
+        row-gap: 36px;
+    } 
+}

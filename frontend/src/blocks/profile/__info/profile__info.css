@@ -1,0 +1,24 @@
+.profile__info {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(2, min-content);
+    column-gap: 18px;
+    row-gap: 7px;
+    justify-content: center;
+    align-items: center;
+    grid-template-areas: 
+    "name edit"
+    "job job";
+    box-sizing: border-box;
+}
+
+@media screen and (max-width:568px) {
+    .profile__info {
+        display: flex;
+        flex-direction: column;
+        max-width: 190px;
+        min-width: 100px;
+        width: 100%;
+    }
+}

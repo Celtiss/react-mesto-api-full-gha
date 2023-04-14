@@ -1,0 +1,16 @@
+.entry__content {
+    max-width: 418px;
+    min-width: 282px;
+    padding: 0 11px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 380px) {
+    .entry__content {
+        max-width: 282px;
+    } 
+}

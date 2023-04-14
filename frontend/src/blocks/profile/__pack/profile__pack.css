@@ -1,0 +1,15 @@
+.profile__pack {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 30px;
+}
+
+@media screen and (max-width: 568px) {
+    .profile__pack {
+        flex-direction: column;
+        row-gap: 26px;
+        justify-content: center;
+        margin: 0 28px 0;
+    }
+}

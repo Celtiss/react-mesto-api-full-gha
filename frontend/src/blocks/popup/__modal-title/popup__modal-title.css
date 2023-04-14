@@ -1,0 +1,14 @@
+.popup__modal-title {
+    padding: 0;
+    margin: 16px 0 26px;
+    max-width: 358px;
+    min-width: 244px;
+    width: 100%;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+}

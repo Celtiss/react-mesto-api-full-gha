@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b3a0ac00.css",
+    "main.js": "/static/js/main.c6306fd8.js",
+    "static/js/787.5530211c.chunk.js": "/static/js/787.5530211c.chunk.js",
+    "static/media/logo.svg": "/static/media/logo.03b78ada3425e9132ff3.svg",
+    "static/media/like-icon.svg": "/static/media/like-icon.0bc60938ca96a5dcae18.svg",
+    "index.html": "/index.html",
+    "static/media/fail-icon.svg": "/static/media/fail-icon.df8eddf661ff88f2d0efd3d570d14309.svg",
+    "static/media/trash-button-icon.svg": "/static/media/trash-button-icon.823b0cf1b0b7e9cb7cad.svg",
+    "static/media/success-icon.svg": "/static/media/success-icon.1b6082f862eac35e2514460237d96ecc.svg",
+    "static/media/like-icon-active.svg": "/static/media/like-icon-active.fe17a515669479b1e649.svg",
+    "static/media/profile-edit-button.svg": "/static/media/profile-edit-button.8667ac4a523e8fc42e59.svg",
+    "static/media/avatar-edit-icon.svg": "/static/media/avatar-edit-icon.a086f758840ae814ecde.svg",
+    "static/media/close-icon.svg": "/static/media/close-icon.2ceb783afbab75916ddc.svg",
+    "static/media/add-button-icon.svg": "/static/media/add-button-icon.d86bb2edc2f6eadb96b7.svg",
+    "main.b3a0ac00.css.map": "/static/css/main.b3a0ac00.css.map",
+    "main.c6306fd8.js.map": "/static/js/main.c6306fd8.js.map",
+    "787.5530211c.chunk.js.map": "/static/js/787.5530211c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3a0ac00.css",
+    "static/js/main.c6306fd8.js"
+  ]
+}

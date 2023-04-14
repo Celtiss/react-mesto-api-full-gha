@@ -1,0 +1,18 @@
+.elements__like-icon {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('../../../images/like-icon.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 22px;
+    height: 19px;
+    border: none;
+    cursor: pointer;
+    transition: opacity .2s;
+    box-sizing: border-box;
+}
+
+.elements__like-icon:hover {
+    opacity: .5;
+}

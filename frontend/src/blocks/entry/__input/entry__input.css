@@ -1,0 +1,21 @@
+.entry__input {
+    width: 100%;
+    margin: 0 0 30px;
+    padding: 0 0 13px;
+    box-sizing: border-box;
+    height: 27px;
+    background-color: rgba(0, 0, 0, .0);
+    border: none;
+    border-bottom: 2px solid rgba(204, 204, 204, 1);
+
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+.entry__input:focus{
+    outline: none;
+}

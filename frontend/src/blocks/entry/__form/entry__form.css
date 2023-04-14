@@ -1,0 +1,10 @@
+.entry__form {
+    min-width: 260px;
+    max-width: 358px;
+    width: 100%;
+    padding: 25px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
