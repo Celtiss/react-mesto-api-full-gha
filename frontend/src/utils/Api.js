@@ -91,6 +91,7 @@ class Api {
 }
 
 const api = new Api ({
+    //adress: 'http://localhost:3000'
     url: 'https://mesto.nomoreparties.co/v1/cohort-52',
     headers: {
         'content-type': 'application/json',
