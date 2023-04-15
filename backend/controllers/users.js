@@ -25,7 +25,7 @@ module.exports.login = (req, res, next) => {
 // USERS
 module.exports.getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.send({ data: users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
@@ -36,7 +36,7 @@ module.exports.getCurrentUser = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError(`Пользователь с данным id не найден:  ${userId}`);
     })
-    .then(((user) => res.send({ data: user })))
+    .then(((user) => res.send(user)))
     .catch(next);
 };
 
@@ -47,7 +47,7 @@ module.exports.getUserById = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError(`Пользователь с данным id не найден:  ${userId}`);
     })
-    .then(((user) => res.send({ data: user })))
+    .then(((user) => res.send(user)))
     .catch(next);
 };
 
@@ -61,7 +61,7 @@ module.exports.createNewUser = (req, res, next) => {
       User.create({
         name, about, avatar, email, password: hash,
       })
-        .then((user) => res.send({ data: user }))
+        .then((user) => res.send(user))
         .catch((err) => {
           if (err.name === 'ValidationError') {
             next(new BadReqError('Введены некорректные данные при создании нового пользователя'));
@@ -81,7 +81,7 @@ const updateUser = function (req, res, dataUser, next) {
     .orFail(() => {
       throw new NotFoundError(`Пользователь с данным id не найден:  ${req.user._id}`);
     })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadReqError('Введены некорректные данные при обновлении пользователя'));

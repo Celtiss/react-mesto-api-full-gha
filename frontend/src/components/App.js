@@ -66,7 +66,7 @@ function App() {
             if(data){
                 console.log(data);
                 setLoggedIn(true);
-                setEmail(data.user.email);
+                setEmail(data.email);
                 navigate("/places", {replace:true});
             }
         }).catch((err) => {
@@ -90,7 +90,7 @@ function App() {
     // Управление лайками на карточке
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const isLiked = card.likes.some(i => i === currentUser._id);
         // Отправляем запрос в API и получаем обновлённые данные карточки
         if(isLiked) {
             api.deleteCardLike(card._id).then((newCard) => {

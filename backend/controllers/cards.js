@@ -6,7 +6,7 @@ const { NotFoundError } = require('../errors/NotFoundError');
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send(cards))
     .catch(next);
 };
 
@@ -15,7 +15,7 @@ module.exports.createCard = (req, res, next) => {
   const owner = req.user;
   console.log(owner);
   Card.create({ name, link, owner })
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadReqError('Введены некорректные данные при создании новой карточки'));
@@ -55,7 +55,7 @@ module.exports.likeCard = (req, res, next) => {
     .orFail(() => {
       throw (new NotFoundError(`Карточка с данным id не найдена:  ${req.params.cardId}`));
     })
-    .then(() => res.send({ message: 'Карточка успешко лайкнута' }))
+    .then((card) => res.send(card))
     .catch(next);
 };
 
@@ -68,6 +68,6 @@ module.exports.dislikeCard = (req, res, next) => {
     .orFail(() => {
       throw (new NotFoundError(`Карточка с данным id не найдена:  ${req.params.cardId}`));
     })
-    .then(() => res.send({ message: 'Успешно убран лайк с карточки' }))
+    .then((card) => res.send(card))
     .catch(next);
 };
