@@ -14,9 +14,17 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 const corsOptions = {
-  origin: '*',
+  origin: [
+    'http://mesto.sarena.nomoredomains.monster',
+    'https://mesto.sarena.nomoredomains.monster',
+    'http://api.mesto.sarena.nomoredomains.monster',
+    'https://api.mesto.sarena.nomoredomains.monster',
+    'http://localhost:3000',
+    'http://localhost:3000',
+  ],
   methods: ['PUT', 'DELETE', 'PATCH', 'GET', 'HEAD', 'POST'],
   credentials: true,
+  allowedHeaders: ['Authorization', 'Content-Type'],
 };
 
 app.use(cors(corsOptions));
