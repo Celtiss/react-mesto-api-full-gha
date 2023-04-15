@@ -153,6 +153,11 @@ function App() {
         })
     }
 
+    //Выход из профиля
+    function handleUserLogOut () {
+        auth.logOut();
+    }
+
     function handleEditAvatarClick() {
         setEditAvatarPopupState(true);
     }
@@ -177,7 +182,7 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
             <div className='page'>
                 <div className='page__content'>
-                    <Header email={email} handleLogin={handleLogin} />
+                    <Header email={email} handleLogin={handleLogin} handleLogOut={handleUserLogOut} />
                     <Routes>
                         <Route path="/" element={loggedIn ? <Navigate to="/places" replace /> : <Navigate to="/sign-in" replace />} />
                         <Route path="/sign-up" element={<Register name={'modal-window'} isOpen={isInfoTooltipOpen} onClose={closeAllPopups} onSubmitDataModal={handleModalWindowState}/>} />

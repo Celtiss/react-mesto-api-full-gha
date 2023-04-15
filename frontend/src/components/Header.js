@@ -1,9 +1,9 @@
 import React from 'react';
 import {Routes, Route, NavLink, useNavigate} from 'react-router-dom';
-function Header({email, handleLogin}) {
+function Header({email, handleLogin, handleLogOut}) {
     const navigate = useNavigate();
     const signOut = () => {
-        localStorage.removeItem('jwt');
+        handleLogOut();
         navigate ('/sign-in', {replace: true});
         handleLogin(false);
     }

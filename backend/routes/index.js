@@ -31,7 +31,7 @@ Router.post('/signin', celebrate({
 // Защита роутов авторизацией
 Router.use(auth);
 Router.get('/signout', (req, res) => {
-  res.clearCookie('jwt').send({ message: 'Выход' });
+  res.clearCookie('token').send({ message: 'Выход' });
 });
 Router.use('/users', users);
 Router.use('/cards', cards);

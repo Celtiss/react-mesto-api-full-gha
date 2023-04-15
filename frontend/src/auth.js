@@ -40,6 +40,22 @@ export const signIn  =  (email, password) => {
     })
 }
 
+export const logOut  =  () => {
+    return fetch(`${BASE_URL}/signout`, {
+        method: 'GET',
+        headers:{
+            "Content-Type": "application/json"
+        },
+        credentials: "include",
+    })
+    .then( (res) => {
+        if(res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    })
+}
+
 export const checkToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
