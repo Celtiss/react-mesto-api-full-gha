@@ -36,15 +36,18 @@ mongoose.connect(DB_PATH, {
 //   credentials: true,
 //   allowedHeaders: ['Authorization', 'Content-Type'],
 // };
-app.use(cors());
-// app.use(cors({
-//   origin: [
-//     'http://mesto.sarena.nomoredomains.monster',
-//     'https://mesto.sarena.nomoredomains.monster',
-//     'http://localhost:3000',
-//     'https://localhost:3000',
-//   ],
-// }));
+app.use(cors({
+  origin: [
+    'http://mesto.sarena.nomoredomains.monster',
+    'https://mesto.sarena.nomoredomains.monster',
+    'http://localhost:3000',
+    'https://localhost:3000',
+    'https://localhost:3001',
+    'http://localhost:3001',
+  ],
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+  credentials: true,
+}));
 // const allowedCors = [
 //   'https://mesto.temirbekova.nomoredomains.monster',
 //   'http://mesto.temirbekova.nomoredomains.monster',
