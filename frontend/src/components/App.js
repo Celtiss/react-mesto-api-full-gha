@@ -64,6 +64,7 @@ function App() {
         //const jwt = localStorage.getItem('jwt');
         auth.checkToken().then((data) => {
             if(data){
+                console.log(data);
                 setLoggedIn(true);
                 setEmail(data.user.email);
                 navigate("/places", {replace:true});
