@@ -1,4 +1,4 @@
-export const BASE_URL = 'api.mesto.sarena.nomoredomains.monster';
+export const BASE_URL = 'http://api.mesto.sarena.nomoredomains.monster';
 
 export const signUp  =  (email, password) =>  {
     return fetch(`${BASE_URL}/signup`, {
@@ -40,12 +40,12 @@ export const signIn  =  (email, password) => {
     })
 }
 
-export const checkToken = (jwt) => {
+export const checkToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers:{
             "Content-Type": "application/json",
-            "Authorization" : `Bearer ${jwt}`
+            //"Authorization" : `Bearer ${jwt}`
         },
         credentials: "include",
     })

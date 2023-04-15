@@ -60,19 +60,17 @@ function App() {
 
     // Проверка токена при заходе на страницу
     function checkToken (){
-        console.log(document.cookie);
-        if(localStorage.getItem('jwt')){
-            const jwt = localStorage.getItem('jwt');
-            auth.checkToken(jwt).then((data) => {
-                if(data){
-                    setLoggedIn(true);
-                    setEmail(data.data.email);
-                    navigate("/places", {replace:true});
-                }
-            }).catch((err) => {
-                console.log(err);
-          });
-        }
+       // console.log(document.cookie);
+        //const jwt = localStorage.getItem('jwt');
+        auth.checkToken().then((data) => {
+            if(data){
+                setLoggedIn(true);
+                setEmail(data.user.email);
+                navigate("/places", {replace:true});
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
     // Установка статуса авторизации пользователя

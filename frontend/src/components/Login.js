@@ -26,8 +26,8 @@ function Login({name, handleLogin, isOpen, onClose, onSubmitDataModal}){
         const { email, password } = formValue;
         auth.signIn(email, password).then((res) => {
             setStatusRequest(true);
-            if(res.token){
-                localStorage.setItem('jwt', res.token);
+            if(res){
+                //localStorage.setItem('jwt', res.token);
                 handleLogin(true);
                 navigate ('/places', {replace:true});
             }

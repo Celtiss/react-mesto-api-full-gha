@@ -16,7 +16,8 @@ class Api {
     getUserInfo () {
         return fetch(`${this._url}/users/me`, {
             method: 'GET',
-            headers: this._headers
+            headers: this._headers,
+            credentials: "include",
         })
         .then(this._getResFromServer());
     }
@@ -24,7 +25,8 @@ class Api {
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
             method: 'GET',
-            headers: this._headers
+            headers: this._headers,
+            credentials: "include",
         })
         .then(this._getResFromServer());
     }
@@ -33,6 +35,7 @@ class Api {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
+            credentials: "include",
             body: JSON.stringify({
                 name: `${name}`,
                 about: `${job}`
@@ -45,6 +48,7 @@ class Api {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
             headers: this._headers,
+            credentials: "include",
             body: JSON.stringify({
                 name: `${data.popupName}`,
                 link: `${data.popupImg}`
@@ -57,6 +61,7 @@ class Api {
         return fetch(`${this._url}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers,
+            credentials: "include",
         })
         .then(this._getResFromServer());
     }
@@ -64,7 +69,8 @@ class Api {
     setCardLikes(id) {
         return fetch(`${this._url}/cards/${id}/likes`, {
             method: 'PUT',
-            headers: this._headers
+            headers: this._headers,
+            credentials: "include",
         })
         .then(this._getResFromServer());
     }
@@ -73,6 +79,7 @@ class Api {
         return fetch(`${this._url}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: this._headers,
+            credentials: "include",
         })
         .then(this._getResFromServer());
     }
@@ -81,6 +88,7 @@ class Api {
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
+            credentials: "include",
             body: JSON.stringify({
                 avatar: `${avatarUrl}`
             }  
@@ -92,11 +100,10 @@ class Api {
 
 const api = new Api ({
     //adress: 'http://localhost:3000'
-    //url: 'api-mesto.temirbekova.nomoredomains.monster',
-    url: 'api.mesto.sarena.nomoredomains.monster',
+    url: 'http://api.mesto.sarena.nomoredomains.monster',
     headers: {
         'content-type': 'application/json',
-        authorization: '88b8691a-7ac8-4b43-af84-6572693f6425'
+        //authorization: '88b8691a-7ac8-4b43-af84-6572693f6425'
     },
     credentials: "include",
 });
