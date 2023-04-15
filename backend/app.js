@@ -12,28 +12,6 @@ const { PORT = 3000, DB_PATH = 'mongodb://localhost:27017/mestodb' } = process.e
 const cors = require('cors');
 
 const app = express();
-const whitelist = [
-  'http://mesto.sarena.nomoredomains.monster',
-  'https://mesto.sarena.nomoredomains.monster',
-  'http://api.mesto.sarena.nomoredomains.monster',
-  'https://api.mesto.sarena.nomoredomains.monster',
-  'http://localhost:3000',
-  'http://localhost:3000',
-];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['PUT', 'DELETE', 'PATCH', 'GET', 'HEAD', 'POST'],
-  credentials: true,
-  allowedHeaders: ['Authorization', 'Content-Type'],
-};
-
-app.use(cors(corsOptions));
 
 // Подключение к БД
 mongoose.connect(DB_PATH, {
@@ -43,6 +21,32 @@ mongoose.connect(DB_PATH, {
   .catch((err) => console.log(`Ошибка подключения базы данных: ${err}`));
 
 // // Обработка CORS
+// const whitelist = [
+
+// ];
+// const corsOptions = {
+//   origin: (origin, callback) => {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   methods: ['PUT', 'DELETE', 'PATCH', 'GET', 'HEAD', 'POST'],
+//   credentials: true,
+//   allowedHeaders: ['Authorization', 'Content-Type'],
+// };
+
+app.use(cors({
+  origin: [
+    'http://mesto.sarena.nomoredomains.monster',
+    'https://mesto.sarena.nomoredomains.monster',
+    'http://api.mesto.sarena.nomoredomains.monster',
+    'https://api.mesto.sarena.nomoredomains.monster',
+    'http://localhost:3000',
+    'http://localhost:3000',
+  ],
+}));
 // const allowedCors = [
 //   'https://mesto.temirbekova.nomoredomains.monster',
 //   'http://mesto.temirbekova.nomoredomains.monster',
