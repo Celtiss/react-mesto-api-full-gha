@@ -1,4 +1,4 @@
-export const BASE_URL = 'api-mesto.temirbekova.nomoredomains.monster';
+export const BASE_URL = 'api.mesto.sarena.nomoredomains.monster';
 
 export const signUp  =  (email, password) =>  {
     return fetch(`${BASE_URL}/signup`, {
@@ -6,6 +6,7 @@ export const signUp  =  (email, password) =>  {
         headers:{
             "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({
             email: `${email}`,     
             password: `${password}`
@@ -25,6 +26,7 @@ export const signIn  =  (email, password) => {
         headers:{
             "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({
             email: `${email}`,     
             password: `${password}`

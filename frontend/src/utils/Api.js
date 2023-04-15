@@ -92,7 +92,8 @@ class Api {
 
 const api = new Api ({
     //adress: 'http://localhost:3000'
-    url: 'api-mesto.temirbekova.nomoredomains.monster',
+    //url: 'api-mesto.temirbekova.nomoredomains.monster',
+    url: 'api.mesto.sarena.nomoredomains.monster',
     headers: {
         'content-type': 'application/json',
         authorization: '88b8691a-7ac8-4b43-af84-6572693f6425'
