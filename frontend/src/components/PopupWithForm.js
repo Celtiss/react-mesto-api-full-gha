@@ -9,10 +9,8 @@ function PopupWithForm(props) {
 
     useEffect(() => {
         document.addEventListener('keydown', props.handleEscClose);
-        console.log('start');
         return () => {
             document.removeEventListener('keydown', props.handleEscClose);
-            console.log('end');
         }
     });
 

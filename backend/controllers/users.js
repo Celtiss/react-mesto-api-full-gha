@@ -1,7 +1,7 @@
+require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-require('dotenv').config();
 
 const { BadReqError } = require('../errors/BadReqError');
 const { NotFoundError } = require('../errors/NotFoundError');
@@ -16,8 +16,8 @@ module.exports.login = (req, res, next) => {
       res.cookie('token', token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
-        // secure: false,
-        // sameSite: 'None',
+        secure: true,
+        sameSite: 'None',
       }).send({ user })
         .end();
     })

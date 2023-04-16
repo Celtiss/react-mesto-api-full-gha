@@ -9,7 +9,7 @@ function AddPlacePopup({isOpen, onClose, onAddCard,handleEscClose}) {
     React.useEffect(() => {
         setName('');
         setLink('');
-    },[]);
+    },[isOpen]);
 
     function handleNameChange(e) {
         setName(e.target.value);
