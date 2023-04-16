@@ -6,6 +6,7 @@ const User = require('../models/user');
 const { BadReqError } = require('../errors/BadReqError');
 const { NotFoundError } = require('../errors/NotFoundError');
 const { ConflictError } = require('../errors/ConflictError');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.login = (req, res, next) => {

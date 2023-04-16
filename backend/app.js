@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 const express = require('express');
+const cors = require('cors');
 const { mongoose } = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -7,9 +8,10 @@ const {
   errors,
 } = require('celebrate');
 const routes = require('./routes/index');
+
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+
 const { PORT = 3000, DB_PATH = 'mongodb://localhost:27017/mestodb' } = process.env;
-const cors = require('cors');
 
 const app = express();
 
