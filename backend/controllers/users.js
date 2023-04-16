@@ -8,6 +8,7 @@ const { NotFoundError } = require('../errors/NotFoundError');
 const { ConflictError } = require('../errors/ConflictError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
+const CREATED_CODE = 200;
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
@@ -72,7 +73,7 @@ module.exports.createNewUser = (req, res, next) => {
       User.create({
         name, about, avatar, email, password: hash,
       })
-        .then((user) => res.send(user))
+        .then((user) => res.status(CREATED_CODE).send(user))
         .catch((err) => {
           if (err.name === 'ValidationError') {
             next(new BadReqError('Введены некорректные данные при создании нового пользователя'));

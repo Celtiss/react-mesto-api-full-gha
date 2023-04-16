@@ -89,7 +89,8 @@ function App() {
     // Управление лайками на карточке
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
-        const isLiked = card.likes.some(i => i === currentUser._id);
+        // const isLiked = card.likes.some(i => i === currentUser._id);
+        const isLiked = true;
         // Отправляем запрос в API и получаем обновлённые данные карточки
         if(isLiked) {
             api.deleteCardLike(card._id).then((newCard) => {

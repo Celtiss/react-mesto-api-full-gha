@@ -4,6 +4,8 @@ const { BadReqError } = require('../errors/BadReqError');
 const { ForbiddenError } = require('../errors/ForbiddenError');
 const { NotFoundError } = require('../errors/NotFoundError');
 
+const CREATED_CODE = 200;
+
 module.exports.getCards = (req, res, next) => {
   Card.find({})
     .populate(['owner', 'likes'])
@@ -19,7 +21,7 @@ module.exports.createCard = (req, res, next) => {
     .then((data) => {
       data.populate(['owner', 'likes'])
         .then((card) => {
-          res.send({
+          res.status(CREATED_CODE).send({
             name: card.name,
             link: card.link,
             owner: card.owner,
@@ -45,7 +47,7 @@ module.exports.deleteCard = (req, res, next) => {
       throw new NotFoundError(`Карточка с данным id не найдена:  ${cardId}`);
     })
     .then((card) => {
-      if (String(card.owner) === req.user._id) {
+      if (String(card.owner._id) === req.user._id) {
         Card.findByIdAndDelete(cardId)
           .orFail(() => {
             throw new NotFoundError(`Карточка с данным id не найдена:  ${cardId}`);
