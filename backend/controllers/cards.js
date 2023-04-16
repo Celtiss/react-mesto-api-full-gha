@@ -46,10 +46,8 @@ module.exports.deleteCard = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError(`Карточка с данным id не найдена:  ${cardId}`);
     })
-    .then(() => { // card
-      const i = true;
-      // if (String(card.owner._id) === req.user._id) {
-      if (i) {
+    .then((card) => {
+      if (String(card.owner._id) === req.user._id) {
         Card.findByIdAndDelete(cardId)
           .orFail(() => {
             throw new NotFoundError(`Карточка с данным id не найдена:  ${cardId}`);
