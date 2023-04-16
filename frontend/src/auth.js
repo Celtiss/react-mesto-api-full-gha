@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://api.mesto.sarena.nomoredomains.monster';
+export const BASE_URL = 'https://api.mesto.sarena.nomoredomains.monster';
 
 export const signUp  =  (email, password) =>  {
     return fetch(`${BASE_URL}/signup`, {
