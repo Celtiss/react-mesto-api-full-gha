@@ -41,7 +41,8 @@ function App() {
 
     //Получаем данные пользователя и карточки с сервера
     useEffect(() => {
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
+        if(loggedIn===true) {
+            Promise.all([api.getUserInfo(), api.getInitialCards()])
             .then(([userData, cardsData]) => {
                 setCurrentUser(userData);
                 setCardsState(cardsData);
@@ -49,7 +50,8 @@ function App() {
             .catch((err) => { //попадаем сюда если один из промисов завершаться ошибкой
                 console.log(err);
             })
-    }, [])
+        }
+    }, [loggedIn])
 
     //Закрытие попапов на esc
     function handleEscClose(event) {
