@@ -5,7 +5,7 @@ const {
 
 const users = require('./users');
 const cards = require('./cards');
-const pattern = require('../regex');
+const patternUrl = require('../regex');
 const { login, createNewUser } = require('../controllers/users');
 const auth = require('../middlewares/auth');
 const { NotFoundError } = require('../errors/NotFoundError');
@@ -14,7 +14,7 @@ Router.post('/signup', celebrate({
   [Segments.BODY]: {
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
-    avatar: Joi.string().regex(pattern),
+    avatar: Joi.string().regex(patternUrl),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
   },

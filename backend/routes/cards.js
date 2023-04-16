@@ -8,18 +8,18 @@ const {
 } = require('../controllers/cards');
 const { BadReqError } = require('../errors/BadReqError');
 // const urlRegExp = new RegExp(/(^(https?:\/\/)?(www\.)?[^\/\s]+\.[^\/\s]+(\/[^\/\s]*)*#?$)/);
-const pattern = require('../regex');
+const patternUrl = require('../regex');
 
 Router.get('/', getCards);
 Router.post('/', celebrate({
   [Segments.BODY]: {
     name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().regex(pattern),
+    link: Joi.string().required().regex(patternUrl),
   },
 }), createCard);
 Router.delete('/:cardId', celebrate({
   [Segments.PARAMS]: {
-    cardId: Joi.custom((v) => {
+    cardId: Joi.required().custom((v) => {
       if (!mongoose.isValidObjectId(v)) {
         throw new BadReqError('Invalid ID');
       }
