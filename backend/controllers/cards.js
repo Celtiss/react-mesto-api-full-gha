@@ -42,6 +42,9 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.deleteCard = (req, res, next) => {
   const { cardId } = req.params;
+  if (cardId.length !== 24) {
+    next(new BadReqError(`Введены некорректные данные при удалении карточки с ID: ${cardId}`));
+  }
   Card.findById(cardId)
     .orFail(() => {
       throw new NotFoundError(`Карточка с данным id не найдена:  ${cardId}`);
@@ -62,13 +65,17 @@ module.exports.deleteCard = (req, res, next) => {
 };
 
 module.exports.likeCard = (req, res, next) => {
+  const userId = req.params.cardId;
+  if (userId.length !== 24) {
+    next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
+  }
   Card.findByIdAndUpdate(
-    req.params.cardId,
+    userId,
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
     .orFail(() => {
-      throw (new NotFoundError(`Карточка с данным id не найдена:  ${req.params.cardId}`));
+      throw (new NotFoundError(`Карточка с данным id не найдена:  ${userId}`));
     })
     .then((data) => {
       data.populate(['owner', 'likes'])
@@ -85,13 +92,17 @@ module.exports.likeCard = (req, res, next) => {
 };
 
 module.exports.dislikeCard = (req, res, next) => {
+  const userId = req.params.cardId;
+  if (userId.length !== 24) {
+    next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
+  }
   Card.findByIdAndUpdate(
-    req.params.cardId,
+    userId,
     { $pull: { likes: req.user._id } },
     { new: true },
   )
     .orFail(() => {
-      throw (new NotFoundError(`Карточка с данным id не найдена:  ${req.params.cardId}`));
+      throw (new NotFoundError(`Карточка с данным id не найдена:  ${userId}`));
     })
     .then((data) => {
       data.populate(['owner', 'likes'])

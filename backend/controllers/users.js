@@ -44,6 +44,9 @@ module.exports.getUsers = (req, res, next) => {
 // USERS/ME
 module.exports.getCurrentUser = (req, res, next) => {
   const userId = req.user._id;
+  if (userId.length !== 24) {
+    next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
+  }
   User.findById(userId)
     .orFail(() => {
       throw new NotFoundError(`Пользователь с данным id не найден:  ${userId}`);
@@ -55,6 +58,9 @@ module.exports.getCurrentUser = (req, res, next) => {
 // USERS/:ID
 module.exports.getUserById = (req, res, next) => {
   const { userId } = req.params;
+  if (userId.length !== 24) {
+    next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
+  }
   User.findById(userId)
     .orFail(() => {
       throw new NotFoundError(`Пользователь с данным id не найден:  ${userId}`);
