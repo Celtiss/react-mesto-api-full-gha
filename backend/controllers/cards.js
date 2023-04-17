@@ -67,7 +67,7 @@ module.exports.deleteCard = (req, res, next) => {
 module.exports.likeCard = (req, res, next) => {
   const userId = req.params.cardId;
   if (!mongoose.isValidObjectId(userId)) {
-    next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
+    return next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
   }
   Card.findByIdAndUpdate(
     userId,
@@ -89,12 +89,13 @@ module.exports.likeCard = (req, res, next) => {
         }));
     })
     .catch(next);
+  return next();
 };
 
 module.exports.dislikeCard = (req, res, next) => {
   const userId = req.params.cardId;
   if (!mongoose.isValidObjectId(userId)) {
-    next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
+    return next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
   }
   Card.findByIdAndUpdate(
     userId,
@@ -116,4 +117,5 @@ module.exports.dislikeCard = (req, res, next) => {
         }));
     })
     .catch(next);
+  return next();
 };
