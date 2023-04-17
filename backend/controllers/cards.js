@@ -42,7 +42,7 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.deleteCard = (req, res, next) => {
   const { cardId } = req.params;
-  if (!mongoose.isValidObjectId(cardId)) {
+  if (!mongoose.Types.ObjectId.isValid(cardId)) {
     next(new BadReqError(`Введены некорректные данные при удалении карточки с данным ID: ${cardId}`));
   }
   Card.findById(cardId)
@@ -66,7 +66,7 @@ module.exports.deleteCard = (req, res, next) => {
 
 module.exports.likeCard = (req, res, next) => {
   const userId = req.params.cardId;
-  if (!mongoose.isValidObjectId(userId)) {
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
     return next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
   }
   Card.findByIdAndUpdate(
@@ -94,7 +94,7 @@ module.exports.likeCard = (req, res, next) => {
 
 module.exports.dislikeCard = (req, res, next) => {
   const userId = req.params.cardId;
-  if (!mongoose.isValidObjectId(userId)) {
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
     return next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
   }
   Card.findByIdAndUpdate(

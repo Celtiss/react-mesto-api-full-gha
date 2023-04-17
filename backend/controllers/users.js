@@ -56,7 +56,7 @@ module.exports.getCurrentUser = (req, res, next) => {
 // USERS/:ID
 module.exports.getUserById = (req, res, next) => {
   const { userId } = req.params;
-  if (!mongoose.isValidObjectId(userId)) {
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
     return next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
   }
   User.findById(userId)
