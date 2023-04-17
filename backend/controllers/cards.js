@@ -43,7 +43,7 @@ module.exports.createCard = (req, res, next) => {
 module.exports.deleteCard = (req, res, next) => {
   const { cardId } = req.params;
   if (!mongoose.Types.ObjectId.isValid(cardId)) {
-    next(new BadReqError(`Введены некорректные данные при удалении карточки с данным ID: ${cardId}`));
+    return next(new BadReqError(`Введены некорректные данные при удалении карточки с данным ID: ${cardId}`));
   }
   Card.findById(cardId)
     .orFail(() => {
@@ -62,6 +62,7 @@ module.exports.deleteCard = (req, res, next) => {
       }
     })
     .catch(next);
+  return 0;
 };
 
 module.exports.likeCard = (req, res, next) => {
