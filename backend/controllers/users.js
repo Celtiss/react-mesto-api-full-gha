@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { mongoose } = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -21,13 +22,13 @@ module.exports.login = (req, res, next) => {
           httpOnly: true,
           secure: true,
           sameSite: 'None',
-        }).send({ user })
+        }).send({ message: 'Авторизация прошла успешно!' })
           .end();
       } else {
         res.cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
-        }).send({ user })
+        }).send({ message: 'Авторизация прошла успешно!' })
           .end();
       }
     })
@@ -44,9 +45,6 @@ module.exports.getUsers = (req, res, next) => {
 // USERS/ME
 module.exports.getCurrentUser = (req, res, next) => {
   const userId = req.user._id;
-  if (userId.length !== 24) {
-    next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
-  }
   User.findById(userId)
     .orFail(() => {
       throw new NotFoundError(`Пользователь с данным id не найден:  ${userId}`);
@@ -58,8 +56,8 @@ module.exports.getCurrentUser = (req, res, next) => {
 // USERS/:ID
 module.exports.getUserById = (req, res, next) => {
   const { userId } = req.params;
-  if (userId.length !== 24) {
-    next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
+  if (!mongoose.isValidObjectId(userId)) {
+    return next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
   }
   User.findById(userId)
     .orFail(() => {
@@ -67,6 +65,7 @@ module.exports.getUserById = (req, res, next) => {
     })
     .then(((user) => res.send(user)))
     .catch(next);
+  return next();
 };
 
 // USERS
@@ -79,7 +78,7 @@ module.exports.createNewUser = (req, res, next) => {
       User.create({
         name, about, avatar, email, password: hash,
       })
-        .then((user) => res.status(CREATED_CODE).send(user))
+        .then((user) => res.status(CREATED_CODE).send(user.toJSON()))
         .catch((err) => {
           if (err.name === 'ValidationError') {
             next(new BadReqError('Введены некорректные данные при создании нового пользователя'));

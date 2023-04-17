@@ -1,3 +1,4 @@
+const { mongoose } = require('mongoose');
 const Card = require('../models/card');
 
 const { BadReqError } = require('../errors/BadReqError');
@@ -16,7 +17,6 @@ module.exports.getCards = (req, res, next) => {
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   const owner = req.user;
-  console.log(owner);
   Card.create({ name, link, owner })
     .then((data) => {
       data.populate(['owner', 'likes'])
@@ -42,8 +42,8 @@ module.exports.createCard = (req, res, next) => {
 
 module.exports.deleteCard = (req, res, next) => {
   const { cardId } = req.params;
-  if (cardId.length !== 24) {
-    next(new BadReqError(`Введены некорректные данные при удалении карточки с ID: ${cardId}`));
+  if (!mongoose.isValidObjectId(cardId)) {
+    next(new BadReqError(`Введены некорректные данные при удалении карточки с данным ID: ${cardId}`));
   }
   Card.findById(cardId)
     .orFail(() => {
@@ -66,7 +66,7 @@ module.exports.deleteCard = (req, res, next) => {
 
 module.exports.likeCard = (req, res, next) => {
   const userId = req.params.cardId;
-  if (userId.length !== 24) {
+  if (!mongoose.isValidObjectId(userId)) {
     next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
   }
   Card.findByIdAndUpdate(
@@ -93,7 +93,7 @@ module.exports.likeCard = (req, res, next) => {
 
 module.exports.dislikeCard = (req, res, next) => {
   const userId = req.params.cardId;
-  if (userId.length !== 24) {
+  if (!mongoose.isValidObjectId(userId)) {
     next(new BadReqError(`Введены некорректные данные при поиске пользователя с данным ID: ${userId}`));
   }
   Card.findByIdAndUpdate(

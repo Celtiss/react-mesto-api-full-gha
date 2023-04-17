@@ -29,7 +29,7 @@ Router.delete('/:cardId', celebrate({
 }), deleteCard);
 Router.put('/:cardId/likes', celebrate({
   [Segments.PARAMS]: {
-    cardId: Joi.custom((v) => {
+    cardId: Joi.required().custom((v) => {
       if (!mongoose.isValidObjectId(v)) {
         throw new BadReqError('Invalid ID');
       }
@@ -39,7 +39,7 @@ Router.put('/:cardId/likes', celebrate({
 }), likeCard);
 Router.delete('/:cardId/likes', celebrate({
   [Segments.PARAMS]: {
-    cardId: Joi.custom((v) => {
+    cardId: Joi.required().custom((v) => {
       if (!mongoose.isValidObjectId(v)) {
         throw new BadReqError('Invalid ID');
       }
