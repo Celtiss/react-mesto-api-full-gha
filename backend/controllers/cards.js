@@ -89,7 +89,7 @@ module.exports.likeCard = (req, res, next) => {
         }));
     })
     .catch(next);
-  return next();
+  return 0;
 };
 
 module.exports.dislikeCard = (req, res, next) => {
@@ -117,5 +117,5 @@ module.exports.dislikeCard = (req, res, next) => {
         }));
     })
     .catch(next);
-  return next();
+  return 0;
 };

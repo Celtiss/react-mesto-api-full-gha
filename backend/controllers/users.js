@@ -65,7 +65,7 @@ module.exports.getUserById = (req, res, next) => {
     })
     .then(((user) => res.send(user)))
     .catch(next);
-  return next();
+  return 0;
 };
 
 // USERS
